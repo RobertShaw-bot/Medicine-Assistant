@@ -1,0 +1,960 @@
+#:kivy 2.0
+#:import Factory kivy.factory.Factory
+#:import TouchSelector main.TouchSelector
+
+
+ScreenManager:
+    SplashScreen:
+    LoginScreen:
+    RegisterScreen:
+    DashboardScreen:
+    SearchMedicineScreen:
+    CaptureScreen:
+    CropScreen:
+    ResultScreen:
+    ReminderScreen:
+    SetupScreen:
+    VideoScreen:
+    SearchHistyoryScreen:
+    VideoScreendouble:
+    CheckScreen:
+    CheckHistoryScreen:
+<SplashScreen>:
+    name: 'splash'    
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        Image:
+            source: "images/splashscreen3.png"
+            size_hint: .58, .58
+            pos_hint: {"center_x": .5, "center_y": .6}
+            canvas.before:
+                Color:
+                    rgb: 1, .85, .825, 1
+        
+        MDIconButton:
+            icon: "chevron-right"
+            user_font_size: "35sp"
+            pos_hint: {"center_x": .5, "center_y": .12}      
+            on_press: app.root.current = 'login'   
+                    
+
+        MDLabel:
+            text: "您的用药助手"   
+            pos_hint: {"center_x": .5, "center_y": .28}       
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: 0, 0, 0
+            font_size:"35sp"
+            font_name: "SIMLI.TTF"
+
+       
+<LoginScreen>:
+    name: 'login'
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        Image:
+            source: "images/logindoctor.png"       
+            size_hint: .3, .3
+            pos_hint: {"center_x": .25, "center_y": .86}
+
+        MDLabel:
+            text: "H E U-H e a l t h !"
+            font_size: "28sp"
+            font_name: "Poppins-SemiBold.ttf"
+            pos_hint: {"center_x": .6, "center_y": .73}    
+
+        MDLabel:
+            text: "登录以继续"           
+            font_size: "20sp"
+            font_name: "Chinesebold.ttf"
+            color: 120/255, 120/255, 120/255, 1
+            pos_hint: {"center_x": .6, "center_y": .66}
+
+        MDLabel:
+            id: lblogin
+            text: " "
+            halign:"center"
+            font_size: "14.5sp"
+            font_name: "simhei.ttf"
+            pos_hint: {"center_x": .5, "center_y": .055}          
+       
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .55}   
+            MDLabel:
+                text:"身份证号"
+                font_size: "14sp"
+                font_name: "Chinesebold.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9} 
+            TextInput:
+                id: cpf
+                size_hint_y: .75
+                font_name: "simhei.ttf"
+                pos_hint: {"center_x": .49, "center_y": .4} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                foreground_color: 120/255, 120/255, 120/255, 1
+                font_size: "17sp"
+                multiline: False
+            Image: 
+                source: "images/cpf.png"     
+                pos_hint: {"center_x": .96, "center_y": .55}
+                size_hint: .7, .7
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 0}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .4}  
+            MDLabel:
+                text:"密码"
+                font_size: "14sp"
+                font_name: "Chinesebold.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9} 
+            TextInput:
+                id: senha
+                size_hint_y: .75
+                font_name: "simhei.ttf"
+                pos_hint: {"center_x": .49, "center_y": .4} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                font_size: "17sp"
+                multiline: False
+                password: True
+            Image: 
+                source: "images/key.png"     
+                pos_hint: {"center_x": .96, "center_y": .55}
+                size_hint: .4, .4
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 0}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1    
+
+        Button:
+            text: "登录"
+            background_color: 0, 0, 0, 0
+            font_name: "Chinesebold.ttf"
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .27}   
+            on_release: 
+                root.loga(cpf.text, senha.text)      
+                
+            canvas.before:
+                Color: 
+                    rgb: 25/255, 38/255, 35/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [2]  
+        Button:
+            text: "注册"
+            background_color: 0, 0, 0, 0
+            font_name: "Chinesebold.ttf"
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .18}
+            on_press: app.root.current = 'register' 
+            canvas.before:
+                Color: 
+                    rgb: 50/255, 66/255, 63/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [2]  
+                
+        MDTextButton:    
+            text: ""          
+            font_size: "15sp"
+            pos_hint: {"center_x": .5, "center_y": .11}
+            halign: "center"
+            color: 120/255, 120/255, 120/255, 1     
+            on_release: app.root.current = 'esqueci'
+
+<RegisterScreen>:
+    name: 'register'
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .95}
+            on_press: app.root.current = 'login'
+            
+        MDLabel:
+            text: "返回"
+            font_name: "simhei.ttf"
+            font_size: "18sp"
+            pos_hint: {"center_x": .615, "center_y": .949}  
+            
+        MDLabel:
+            text: "账号注册"
+            font_size: "28sp"
+            font_name: "Chinesebold.ttf"
+            pos_hint: {"center_x": .6, "center_y": .85}    
+        
+        MDLabel:
+            text: " "
+            halign:"center"
+            font_size: "16sp"
+            font_name: "simhei.ttf"
+            pos_hint: {"center_x": .5, "center_y": .09}    
+            id: lbregister           
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .5}   
+            MDLabel:
+                text:"姓名"
+                font_size: "14sp"
+                font_name: "Chinesebold.ttf"
+                pos_hint: {"center_x": .5, "center_y": 3.85} 
+            TextInput:
+                id : nome
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": 3.4} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                foreground_color: 120/255, 120/255, 120/255, 1
+                font_size: "17sp"
+                multiline: False
+            Image: 
+                source: "images/user.png"     
+                pos_hint: {"center_x": .96, "center_y": 3.5}
+                size_hint: .5, .5
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 3}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1
+
+
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .35}  
+            MDLabel:
+                text:"身份证号"
+                font_size: "14sp"
+                font_name: "Chinesebold.ttf"
+                pos_hint: {"center_x": .5, "center_y": 3.3} 
+            TextInput:
+                id: cpf
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": 2.85} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                font_size: "17sp"
+                multiline: False
+            Image: 
+                source: "images/cpf.png"     
+                pos_hint: {"center_x": .96, "center_y": 3}
+                size_hint: .7, .7
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 2.55}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1    
+
+        
+        MDFloatLayout:
+            size_hint: .79, .08
+            pos_hint: {"center_x": .5, "center_y": .35}  
+            MDLabel:
+                text:"密码"
+                font_size: "14sp"
+                font_name: "Chinesebold.ttf"
+                pos_hint: {"center_x": .5, "center_y": .9} 
+            TextInput:
+                id: senha 
+                size_hint_y: .75
+                font_name: "Poppins-Regular.ttf"
+                pos_hint: {"center_x": .49, "center_y": .4} 
+                background_color: 0, 0, 0, 0    
+                cursor_color: 0, 0, 0, 1
+                cursor_width: "2sp"
+                font_size: "17sp"
+                multiline: False
+                password: True
+            Image: 
+                source: "images/key.png"     
+                pos_hint: {"center_x": .96, "center_y": .5}
+                size_hint: .4, .4
+            MDFloatLayout:
+                pos_hint: {"center_x": .5, "center_y": 0}
+                size_hint_y: .03    
+                md_bg_color: 120/255, 120/255, 120/255, 1            
+
+        Button:
+            text: "注册"
+            background_color: 0, 0, 0, 0
+            font_name: "Chinesebold.ttf"
+            size_hint: .79, .065
+            pos_hint: {"center_x": .5, "center_y": .2}
+            on_release:root.registro(nome.text, cpf.text, senha.text)
+            canvas.before:
+                Color: 
+                    rgb: 25/255, 38/255, 35/255, 1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [2]  
+<DashboardScreen>:
+    name: 'dashboard'
+    MDBoxLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        orientation:'vertical'
+        MDFloatLayout:
+            size_hint_y:0.4
+            MDIconButton:
+                icon: "images/R-C.png"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+                pos_hint: {"center_x": 0.5, "center_y": 0.45}  
+                icon_size:"160dp"
+                on_release: app.root.current='capturescreen'  # call function when button is pressed
+        MDGridLayout:
+            size_hint_y:0.6
+            cols:2
+            padding:[dp(15),dp(15),dp(15),dp(35)]
+            spacing:dp(15)
+            MDCard:
+                md_bg_color: 120/255, 173/255, 173/255, 1
+                padding:dp(10)
+                spacing:dp(10)
+                radius:dp(25)
+                ripple_behavior: True
+                orientation:'vertical'
+                on_release: app.root.current = 'searchmedicine'
+                Image:
+                    source:"images/infos.png"
+                    size_hint: 0.9, 0.9  # 取消大小的相对比例
+                    allow_stretch: True
+                    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                   
+                MDLabel:
+                    halign:"center"
+                    text:"搜索"
+                    font_size: "27sp" 
+                    font_name: "Chinesebold.ttf"
+            MDCard:
+                md_bg_color: 120/255, 173/255, 173/255, 1
+                padding:dp(10)
+                spacing:dp(10)
+                radius:dp(25)
+                ripple_behavior: True
+                orientation:'vertical'
+                on_release: app.root.current = 'reminderscreen'
+                Image:
+                    source:"images/calendar4.png"
+                    size_hint: 0.9,0.9  # 取消大小的相对比例
+                    allow_stretch: True
+                    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                    
+                MDLabel:
+                    halign:"center"
+                    text:"用药提醒"
+                    font_size: "25sp" 
+                    font_name: "Chinesebold.ttf"
+            MDCard:
+                md_bg_color: 120/255, 173/255, 173/255, 1
+                padding:dp(10)
+                spacing:dp(10)
+                radius:dp(25)
+                ripple_behavior: True
+                orientation:'vertical'
+                on_release: app.root.current = 'setupscreen'
+
+                Image:
+                    source:"images/register.png"
+                    size_hint: 0.9,0.9  # 取消大小的相对比例
+                    allow_stretch: True
+                    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                    
+                MDLabel:
+                    halign:"center"
+                    text:"用户信息"
+                    font_size: "25sp" 
+                    font_name: "Chinesebold.ttf"
+
+            MDCard:
+                md_bg_color: 120/255, 173/255, 173/255, 1
+                padding:dp(10)
+                spacing:dp(10)
+                radius:dp(25)
+                ripple_behavior: True
+                orientation:'vertical'
+                on_release: app.root.current = 'checkscreen'
+                Image:
+                    
+                    source:"images/meds3.png"
+                    size_hint: 0.9,0.9  # 取消大小的相对比例
+                    allow_stretch: True
+                    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                MDLabel:
+                    halign:"center"
+                    text:"用药打卡"
+                    font_size: "25sp" 
+                    font_name: "Chinesebold.ttf"  
+<CheckScreen>:
+    name: "checkscreen"
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        orientation: 'vertical'
+        MDBoxLayout:
+            orientation: "vertical"
+            size_hint_y: None
+            height: self.minimum_height
+            pos_hint: {"center_x": .5, "top": .95}
+            MDRectangleFlatButton:
+                text: '打卡！'
+                font_name: "simhei.ttf"
+                pos_hint: {"center_x": .6, "right": .4} 
+                on_release: root.check_history()
+            MDLabel:
+                text: "坚持打卡哟！"
+                halign: "center"
+                font_size: "26sp"
+                font_name: "simhei.ttf"
+                size_hint_y: None
+                height: self.texture_size[1]
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .95}
+            on_press: app.root.current = 'dashboard'
+        MDLabel:
+            text: "返回"
+            font_name: "simhei.ttf"
+            font_size: "18sp"
+            pos_hint: {"center_x": .615, "center_y": .949}  
+        MDBoxLayout:
+            id: show_check
+            font_name: "simhei.ttf"
+            do_scroll_x: False
+            size_hint: (1, 1)
+            pos_hint: {"center_x": .5, "top": 1}
+
+<DashboardCard@MDCard>:
+    md_bg_color: 120/255, 173/255, 173/255, 1
+    padding:dp(10)
+    spacing:dp(10)
+    radius:dp(25)
+    ripple_behavior: True
+    image:''
+    text:""
+    items_count:""
+    subtext:''
+    orientation:'vertical'
+    Image:
+        source:root.image
+    MDBoxLayout:
+        size_hint: 1, 0.5
+        pos_hint: {'center_x': 0.5, 'y': 0.05}
+        orientation:'vertical'
+        MDLabel:
+            halign:"center"
+            text:root.text
+            font_size: "15sp" 
+            font_name: "Poppins-Medium.ttf"
+        MDLabel:
+            halign:"center"
+            font_style:"Caption"
+            text:root.subtext
+        MDLabel:
+            halign:"center"
+            text:root.items_count
+<SearchMedicineScreen>:
+    name: 'searchmedicine'
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        orientation: 'vertical'
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .95}
+            on_press: app.root.current = 'dashboard'
+        MDLabel:
+            text: "返回"
+            font_name: "simhei.ttf"
+            font_size: "18sp"
+            pos_hint: {"center_x": .615, "center_y": .949}  
+        MDBoxLayout:
+            orientation: "vertical"
+            size_hint_y: None
+            height: self.minimum_height
+            pos_hint: {"center_x": .5, "top": 0.98}
+            MDLabel:
+                text: "搜索"
+                halign: "center"
+                font_size: "23sp"
+                font_name: "simhei.ttf"
+                size_hint_y: None
+                height: self.texture_size[1]
+            MDTextField:
+                id: medicine_search
+                size_hint_x: None
+                width: "300dp"
+                font_name: "simhei.ttf"
+                pos_hint: {"center_x": .5, "top": .8}
+            MDRectangleFlatButton:
+                text: "搜索"
+                size_hint_x: None
+                width: "150dp"
+                font_name:"simhei.ttf"
+                pos_hint: {"center_x": .5, "top": .7}
+                on_release: root.search_in_database(medicine_search.text)
+        ScrollView:
+            id: search_result
+            font_name: "simhei.ttf"
+            do_scroll_x: False
+            size_hint: (1, 1)
+            pos_hint: {"center_x": .5, "top": .8}
+<CaptureScreen>:
+    name:'capturescreen'
+    MDFloatLayout:
+        md_bg_color: 188/255,227/255,217/255,1
+        orientation: 'vertical'
+        MDBoxLayout:
+            orientation:'vertical'
+            Camera:
+            # Camera:
+                # index:0
+                id:camera
+                resolution: (640, 480)
+                play:False
+                # size_hint:(1,1)
+            BoxLayout:
+                orientation: "horizontal"
+                padding: 10
+                size_hint: (1, 0.15)
+                Button:
+                    text:'返回'
+                    font_name: "Chinesebold.ttf"
+                    on_press:app.root.current='dashboard'
+                    size_hint: (0.33, 1)
+                Button:
+                    text:'启动'
+                    font_name: "Chinesebold.ttf"
+                    on_press:camera.play=not camera.play
+                    size_hint: (0.33, 1)
+                Button:
+                    text:'拍摄'
+                    font_name: "Chinesebold.ttf"
+                    on_press:root.take_photo_and_screenshot()
+                    size_hint: (0.33, 1)
+
+
+<CropScreen>:
+    name:'cropscreen'
+    id:cropscreen
+    MDFloatLayout:
+        md_bg_color: 188/255,227/255,217/255,1
+        orientation: 'vertical'
+        MDBoxLayout:
+            id:image_box_layout
+            orientation:"vertical"
+            Image:
+                id:image
+                source:root.image_path
+            Widget:
+                id: image_canvas
+                size_hint: (0.0000001, 0.0000001)
+                canvas:
+                    Rectangle:
+                        id: root.rect_box
+                        pos: (root.x1, root.y1)
+                        size: (root.t_x, root.t_y)
+            TouchSelector:
+                id: touch_selector
+                size_hint: (0.000000000001, 0.000000000001)
+            BoxLayout:
+                id: button_boxlayout
+                orientation: "horizontal"
+                padding: 10
+                size_hint: (1, 0.15)
+                Button:
+                    id: accept_button
+                    text: "保存"
+                    font_name: "Chinesebold.ttf"
+                    size_hint: (0.5, 1)
+                    on_press: root.image_accepted_by_user()
+                Button:
+                    id: cancel_button
+                    text: "取消"
+                    font_name: "Chinesebold.ttf"
+                    size_hint: (0.5, 1) 
+                    on_press:root.clear_touch_selector()
+                 
+<ResultScreen>:
+    name:'resultscreen'
+    id:resultscreen
+    MDFloatLayout:
+        md_bg_color: 188/255,227/255,217/255,1
+        orientation: 'vertical'
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .95}
+            on_press: app.root.current = 'dashboard'
+        MDLabel:
+            text: "返回"
+            font_name: "simhei.ttf"
+            font_size: "18sp"
+            pos_hint: {"center_x": .615, "center_y": .949}  
+        MDGridLayout:
+            size_hint_y:0.9
+            cols:1
+            padding:[dp(15),dp(15),dp(15),dp(35)]
+            spacing:dp(15)
+            MDCard:
+                md_bg_color: 120/255, 173/255, 173/255, 1
+                adding:dp(10)
+                spacing:dp(10)
+                radius:dp(25)
+                ripple_behavior: True
+                orientation:'horizontal'
+                on_press:root.show_up()
+                Image:
+                    id:imageone
+                    source: root.image_path1
+                    size_hint:0.9,0.9
+                    allow_scretch:True
+                MDLabel:
+                    id:textone
+                    text:root.text1
+                    font_size: "25sp" 
+                    font_name: "Chinesebold.ttf"
+                    readonly:True
+            MDCard:
+                md_bg_color: 120/255, 173/255, 173/255, 1
+                adding:dp(10)
+                spacing:dp(10)
+                radius:dp(25)
+                ripple_behavior: True
+                orientation:'horizontal'
+                Image:
+                    id:imagetwo
+                    source:root.image_path2
+                    size_hint:0.9,0.9
+                    allow_scretch:True
+                MDLabel:
+                    id:texttwo
+                    text:root.text2
+                    font_size: "25sp" 
+                    font_name: "Chinesebold.ttf"
+            MDCard:
+                md_bg_color: 120/255, 173/255, 173/255, 1
+                adding:dp(10)
+                spacing:dp(10)
+                radius:dp(25)
+                ripple_behavior: True
+                orientation:'horizontal'
+                Image:
+                    id:imagethree
+                    source:root.image_path3
+                    size_hint:0.9,0.9
+                    allow_scretch:True
+                MDLabel:
+                    id:textthree
+                    text:root.text3
+                    font_size: "25sp" 
+                    font_name: "Chinesebold.ttf"
+            
+
+<PopupLayout>:
+    md_bg_color:120/255, 173/255, 173/255, 1
+    orientation:"horizontal"
+    Button:
+        # background_normal:' '
+        background_color:188/255, 227/255, 217/255, 1
+        size_hint:(0.45,1)
+        pos_hint:{"center_x":0.25,"center_y":0.5}
+        on_press:app.root.current="videoscreen"
+    Image:
+        source:"images/speaker.png"
+        pos_hint:{"center_x":0.25,"center_y":0.5}
+    Button:
+        # background_normal:' '
+        background_color:188/255, 227/255, 217/255, 1
+        size_hint:(0.45,1)
+        pos_hint:{"center_x":0.75,"center_y":0.5} 
+        on_press: root.jump_to_reminder()
+    Image:
+        source:"images/white_plus.png"
+        pos_hint:{"center_x":0.75,"center_y":0.5}  
+
+<PopupLay>:
+    md_bg_color:120/255, 173/255, 173/255, 1
+    orientation:"horizontal"
+    Button:
+        background_color:188/255, 227/255, 217/255, 1
+        size_hint:(0.45,1)
+        pos_hint:{"center_x":0.25,"center_y":0.5}
+        on_press:app.root.current="videoscreendouble"
+    Image:
+        source:"images/speaker.png"
+        pos_hint:{"center_x":0.25,"center_y":0.5}
+    Button:
+        background_color:188/255, 227/255, 217/255, 1
+        size_hint:(0.45,1)
+        pos_hint:{"center_x":0.75,"center_y":0.5} 
+        on_press: root.jump_to_reminder()
+    Image:
+        source:"images/white_plus.png"
+        pos_hint:{"center_x":0.75,"center_y":0.5}  
+       
+<ReminderScreen>:
+    name: "reminderscreen"
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        orientation: 'vertical'
+        MDBoxLayout:
+            id:show
+            orientation: "vertical"
+            size_hint_y: None
+            height: self.minimum_height
+            pos_hint: {"center_x": .5, "top": .95}
+            MDRectangleFlatButton:
+                text: '删除'
+                font_name: "simhei.ttf"
+                pos_hint: {"center_x": .6, "right": .4} 
+                on_release: root.delete_selected_rows()
+            MDLabel:
+                text: "输入待提醒药品"
+                halign: "center"
+                font_size: "22sp"
+                font_name: "simhei.ttf"
+                size_hint_y: None
+                height: self.texture_size[1]
+            MDTextField:
+                id: medicine_reminder
+                size_hint_x: None
+                width: "300dp"
+                font_name: "simhei.ttf"
+                pos_hint: {"center_x": .5, "top": .8}
+            MDRectangleFlatButton:
+                text: "添加"
+                size_hint_x: None
+                width: "150dp"
+                font_name: "simhei.ttf"
+                pos_hint: {"center_x": .5, "top": .7}
+                on_release: root.get_text(medicine_reminder.text)
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .95}
+            on_press: app.root.current = 'dashboard'
+        MDLabel:
+            text: "返回"
+            font_name: "simhei.ttf"
+            font_size: "18sp"
+            pos_hint: {"center_x": .615, "center_y": .949}
+        MDBoxLayout:
+            id: show_data
+            font_name: "simhei.ttf"
+            do_scroll_x: False
+            size_hint: (1, 1)
+            pos_hint: {"center_x": .5, "top": 1}
+
+<SetupScreen>:
+    name: "setupscreen"
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        # 188/255, 227/255, 217/255, 1
+        orientation: 'vertical'
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .95}
+            on_press: app.root.current = 'dashboard'
+        MDLabel:
+            text: "返回"
+            font_name: "simhei.ttf"
+            font_size: "18sp"
+            pos_hint: {"center_x": .615, "center_y": .949}  
+        MDBoxLayout:
+            orientation: "vertical"
+            size_hint_y: None
+            height: self.minimum_height
+            pos_hint: {"center_x": .5, "top": .95}
+            MDLabel:
+                text: "账号与安全"
+                halign: "center"
+                font_size: "25sp"
+                font_name: "simhei.ttf"
+                size_hint_y: None
+                height: self.texture_size[1]
+        MDList:
+            pos_hint: {"center_x": .5, "top": .9}
+            OneLineRightIconListItem:
+                ImageRightWidget:
+                    source: "testdata/picture.jpg"
+                MDLabel:
+                    pos_hint: {"center_x": .5, "top": .9}
+                    text: "   头像"
+                    font_size: "25sp"
+                    font_name: "simhei.ttf"
+        MDList:
+            pos_hint: {"center_x": .5, "top": .8}
+            OneLineListItem:
+                MDLabel:
+                    pos_hint: {"center_x": .5, "top": .9}
+                    text: "   昵称                               默认昵称"
+                    font_size: "25sp"
+                    font_name: "simhei.ttf"
+        MDList:
+            pos_hint: {"center_x": .5, "top": .7}
+            OneLineListItem:
+                MDLabel:
+                    pos_hint: {"center_x": .5, "top": .9}
+                    text: "   身份证号"
+                    font_size: "25sp"
+                    font_name: "simhei.ttf"
+        MDList:
+            pos_hint: {"center_x": .5, "top": .6}
+            OneLineListItem:
+                on_release: app.root.current = 'search_history'
+                MDLabel:
+                    pos_hint: {"center_x": .5, "top": .9}
+                    text: "   最近搜索记录"
+                    font_size: "25sp"
+                    font_name: "simhei.ttf"
+        MDList:
+            pos_hint: {"center_x": .5, "top": .5}
+            OneLineListItem:
+                on_release: app.root.current = "checkhistoryscreen"
+                MDLabel:
+                    pos_hint: {"center_x": .5, "top": .9}
+                    text: "   打卡记录"
+                    font_size: "25sp"
+                    font_name: "simhei.ttf"
+        MDList:
+            pos_hint: {"center_x": .5, "top": .4}
+            OneLineListItem:
+                BoxLayout:
+                    pos_hint: {"center_x": .5, "top": .9}
+                    size_hint: None, None
+                    width: self.minimum_width  # 设置宽度为子控件的最小宽度
+                    height: "50dp"  # 设置高度
+                MDLabel:
+                    text: "                    退出登录"
+                    font_size: "25sp"
+                    font_name: "simhei.ttf"
+                    pos_hint: {"center_x": .5, "top": .9}
+                MDIconButton:
+                    icon: "chevron-left"
+                    user_font_size: "35sp"
+                    pos_hint: {"center_y": .43, "center_x": .4}
+                    on_press: app.root.current = 'splash'
+<VideoScreen>:
+    name:'videoscreen'
+    id:videoscreen
+    MDFloatLayout:
+        md_bg_color: 188/255,227/255,217/255,1
+        orientation: 'vertical'
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .95}
+            on_press: app.root.current = 'dashboard'
+        MDLabel:
+            text: "Back"
+            font_size: "18sp"
+            font_name: "Poppins-Regular.ttf"
+            pos_hint: {"center_x": .615, "center_y": .949}
+<SearchHistyoryScreen>:
+    name: "search_history"
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        # 188/255, 227/255, 217/255, 1
+        orientation: 'vertical'
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .95}
+            on_press: app.root.current = 'setupscreen'
+        MDLabel:
+            text: "返回"
+            font_name: "simhei.ttf"
+            font_size: "18sp"
+            pos_hint: {"center_x": .615, "center_y": .949}
+        MDBoxLayout:
+            orientation: "vertical"
+            size_hint_y: None
+            height: self.minimum_height
+            pos_hint: {"center_x": .5, "top": 0.98}
+            MDRectangleFlatButton:
+                text: '删除'
+                font_name: "simhei.ttf"
+                pos_hint: {"center_x": .6, "right": .4} 
+                on_release: root.delete_history()
+            MDLabel:
+                text: "搜索历史"
+                halign: "center"
+                font_size: "28sp"
+                font_name: "simhei.ttf"
+                size_hint_y: None
+                height: self.texture_size[1]
+        ScrollView:
+            id: search_history
+            font_name: "simhei.ttf"
+            do_scroll_x: False
+            size_hint: (1, 1)
+            pos_hint: {"center_x": .5, "top": .8}
+        
+<VideoScreendouble>:
+    name:'videoscreendouble'
+    id:videoscreen
+    MDFloatLayout:
+        md_bg_color: 188/255,227/255,217/255,1
+        orientation: 'vertical'
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .95}
+            on_press: app.root.current = 'dashboard'
+        MDLabel:
+            text: "Back"
+            font_size: "18sp"
+            font_name: "Poppins-Regular.ttf"
+            pos_hint: {"center_x": .615, "center_y": .949}
+
+<CheckHistoryScreen>:
+    name:"checkhistoryscreen"
+    MDFloatLayout:
+        md_bg_color: 188/255, 227/255, 217/255, 1
+        # 188/255, 227/255, 217/255, 1
+        orientation: 'vertical'
+        MDIconButton:
+            icon: "chevron-left"
+            user_font_size: "35sp"
+            pos_hint: {"center_y": .95}
+            on_press: app.root.current = 'setupscreen'
+        MDLabel:
+            text: "返回"
+            font_name: "simhei.ttf"
+            font_size: "18sp"
+            pos_hint: {"center_x": .615, "center_y": .949}
+        MDBoxLayout:
+            orientation: "vertical"
+            size_hint_y: None
+            height: self.minimum_height
+            pos_hint: {"center_x": .5, "top": 0.98}
+            MDLabel:
+                text: "打卡记录"
+                halign: "center"
+                font_size: "28sp"
+                font_name: "simhei.ttf"
+                size_hint_y: None
+                height: self.texture_size[1]
+        ScrollView:
+            id: check_history
+            font_name: "simhei.ttf"
+            do_scroll_x: False
+            size_hint: (1, 1)
+            pos_hint: {"center_x": .5, "top": .8}
